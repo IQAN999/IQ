@@ -1,0 +1,8 @@
+{
+  "name": "IQ",
+  "creator": "IQAN",
+  "description": "criado pelo maior gostoso q ta tendo",
+  "version": "1.0",
+  "entry": "index.js",
+  "requires":["RenderLib","PogData","Vigilance","BloomCore"]
+}

@@ -1,0 +1,27 @@
+
+[geral]
+	pearl_cancel = true
+
+	[geral.cheats]
+		auto_close_wardrobe = true
+		pearl_refill = true
+		pearl_cancel = true
+
+[kuudra]
+	"highlight_nos_parça_+_fresh_diferentinho" = true
+	onde_a_kuudra_spawna = true
+	remover_nametags_dos_mobs_da_kuudra = true
+	ding_human_cannonball = false
+	dano_do_rend = true
+	lag_tracker = true
+	hp_da_kuudra_na_bossbar = true
+	aviso_de_roubo_de_supply = true
+
+	[kuudra.cheats]
+		auto_bm = true
+		auto_cannon_close = true
+		auto_bm_demon_hd_xd_2012_pvp = false
+
+	[kuudra.kuudra_cheats]
+		auto_bm_demon_mode_hd_4k_2012 = true
+
