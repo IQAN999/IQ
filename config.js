@@ -85,6 +85,19 @@ class Settings {
   };
 
   @SwitchProperty({
+    name: "Supply Waypoints",
+    category: "Kuudra"
+  })
+  SupplyWaypoints = false
+
+  @ColorProperty({
+    name: 'Supply Waypoint Color',
+    description: `Sets the color for supplies`,
+    category: 'Kuudra'
+  })
+  SupplyWaypointColor = Color.GREEN
+
+  @SwitchProperty({
     name: "Hide Kuudra Mob Nametags",
     category: "Kuudra"
   })
@@ -179,6 +192,7 @@ class Settings {
     this.setCategoryDescription("Kuudra", "&d&lKuudra Options")
 
     this.addDependency("Auto Requeue", "Chest Open");
+    this.addDependency("Supply Waypoint Color", "Supply Waypoints");
   }
 }
 export default new Settings();

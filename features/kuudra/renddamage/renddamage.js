@@ -19,7 +19,7 @@ function formatHealth(number) {
 }
 
 function formatDamage(i) {
-    if ( i >= 2083 && i <= 4166) return `&c`; // 20M-40M
+    if ( i >= 1666 && i <= 4166) return `&c`; // 20M-40M
     if ( i >= 4166 && i <= 7291) return `&e`; // 40M-70M
     if ( i > 7291 ) return `&a`; //70M+
     return `&f`;

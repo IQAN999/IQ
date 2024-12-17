@@ -11,7 +11,7 @@ function extractIGN(player) {
   return player?.removeFormatting()?.split("] ")?.slice(-1)?.toString()?.replace(/[^A-Za-z0-9_]/g, "")
 }
 
-freshers = new Set()
+freshers = new Map()
 buildPhase = false 
 
 // register build phase
@@ -22,6 +22,7 @@ registerWhen(register("chat", () => {
 // reset build phase
 registerWhen(register("worldLoad", () => {
   buildPhase = false
+  freshers = new Map()
 }), () => buildPhase)
 
 // register freshers
@@ -30,10 +31,10 @@ registerWhen(register("chat", (player) => {
 
   if (!disectedName || !freshers) return;
 
-  freshers.add(disectedName)
+  freshers.set(disectedName, Date.now() + 10000)
 
   setTimeout(() => freshers.delete(disectedName), 10000);
-}).setCriteria("Party > ${player}: FRESH").setStart(), () => Skyblock.subArea === "Kuudra's Hollow" && buildPhase && Settings.TeamHighlight)
+}).setCriteria("Party > ${player}: FRESH").setStart(), () => Skyblock.subArea === "Kuudra's Hollow" && Settings.TeamHighlight)
 
 // render freshbox and normalbox
 registerWhen(register("renderWorld", () => {
@@ -59,6 +60,27 @@ registerWhen(register("renderWorld", () => {
         r, g, b, 1,
         false
       );
+
+      if(freshers.has(name)){
+        freshTime = ((freshers.get(name) - Date.now())/1000).toFixed(2)
+        
+        freshTimeMs = (freshers.get(name) - Date.now())
+
+        if(freshTimeMs <= 2000){
+          freshTimeColor = "§4"
+        }else if(freshTimeMs > 2000 && freshTimeMs <= 4000 ){
+          freshTimeColor = "§c"
+        }else if(freshTimeMs > 4000 && freshTimeMs <= 6000 ){
+          freshTimeColor = "§6"
+        }else if(freshTimeMs > 6000 && freshTimeMs <= 8000 ){
+          freshTimeColor = "§2"
+        }else if(freshTimeMs > 8000 && freshTimeMs <= 10000 ){
+          freshTimeColor = "§a"
+        }
+
+        Tessellator.drawString(`${freshTimeColor}${freshTime}`, x, y + 4, z, 0xF0DC02, true, 3)
+      }
+      
       Tessellator.drawString(name, x, y + 2.5, z, hex, true, 1.50)
     }
-}), () => Skyblock.subArea === "Kuudra's Hollow" && Settings.TeamHighlight)
+}), () => Skyblock.subArea === "Kuudra's Hollow" && Settings.TeamHighlight && buildPhase)

@@ -4,38 +4,44 @@
 
 	[geral.cheats]
 		auto_close_wardrobe = true
-		pearl_refill = true
-		pearl_cancel = true
+		pearl_refill = false
+		pearl_cancel = false
 
 [kuudra]
 	"highlight_nos_parça_+_fresh_diferentinho" = true
 	ding_human_cannonball = false
+	supply_waypoint_color = "117,204,0,255"
 	dano_do_rend = true
 	lag_tracker = true
 	auto_requeue = false
-	kuudra_server_lag_tracker = true
+	kuudra_server_lag_tracker = false
 	onde_a_kuudra_spawna = true
 	chest_open = true
 	remover_nametags_dos_mobs_da_kuudra = true
-	hide_kuudra_mob_nametags = true
-	supply_already_picking_alert = true
+	hide_kuudra_mob_nametags = false
+	supply_already_picking_alert = false
 	hp_da_kuudra_na_bossbar = true
 	team_highlight = true
-	bossbar_kuudra_hp = true
+	supply_waypoints = true
+	bossbar_kuudra_hp = false
 	aviso_de_roubo_de_supply = true
 
 	[kuudra.kuudra_cheats]
 		auto_bm_demon_mode_hd_4k_2012 = true
 
 	[kuudra.phase_4]
-		chest_open = true
+		chest_open = false
 		auto_requeue = true
-		rend_damage = true
-		kuudra_spawn_alert = true
-		key_reminder = true
+		rend_damage = false
+		kuudra_spawn_alert = false
+		key_reminder = false
+
+	[kuudra.zheats]
+		auto_bm = false
+		auto_cannon_close = false
 
 	[kuudra.cheats]
-		auto_bm = true
-		auto_cannon_close = true
+		auto_bm = false
+		auto_cannon_close = false
 		auto_bm_demon_hd_xd_2012_pvp = false
 

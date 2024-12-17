@@ -34,3 +34,9 @@ export const HEADER = `${GRAY}[${GOLD}IQ${GRAY}] ${YELLOW}v${
   ${WHITE}Made By IQAN
   `;
 export const LOGO = `${GRAY}[${GOLD}IQ${GRAY}] `;
+
+
+/**
+ * Minecraft Class Constants
+ */
+export const GIANT_CLASS = Java.type("net.minecraft.entity.monster.EntityGiantZombie").class;
