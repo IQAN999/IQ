@@ -9,19 +9,33 @@
 
 [kuudra]
 	"highlight_nos_parça_+_fresh_diferentinho" = true
-	onde_a_kuudra_spawna = true
-	remover_nametags_dos_mobs_da_kuudra = true
 	ding_human_cannonball = false
 	dano_do_rend = true
 	lag_tracker = true
+	auto_requeue = false
+	kuudra_server_lag_tracker = true
+	onde_a_kuudra_spawna = true
+	chest_open = true
+	remover_nametags_dos_mobs_da_kuudra = true
+	hide_kuudra_mob_nametags = true
+	supply_already_picking_alert = true
 	hp_da_kuudra_na_bossbar = true
+	team_highlight = true
+	bossbar_kuudra_hp = true
 	aviso_de_roubo_de_supply = true
+
+	[kuudra.kuudra_cheats]
+		auto_bm_demon_mode_hd_4k_2012 = true
+
+	[kuudra.phase_4]
+		chest_open = true
+		auto_requeue = true
+		rend_damage = true
+		kuudra_spawn_alert = true
+		key_reminder = true
 
 	[kuudra.cheats]
 		auto_bm = true
 		auto_cannon_close = true
 		auto_bm_demon_hd_xd_2012_pvp = false
-
-	[kuudra.kuudra_cheats]
-		auto_bm_demon_mode_hd_4k_2012 = true
 

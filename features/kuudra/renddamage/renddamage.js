@@ -3,35 +3,36 @@ import Settings from '../../../config';
 import { registerWhen } from "../../../utils/reg";
 
 let kuudra = undefined;
-let kuudraLastHP = 100_000;
-let p4Start = undefined
-let threshold = 20_000_000;
+let kuudraLastHP = 24999;
+let p4Start = false
 
-function formatNumber(num) {
-    if (isNaN(num) || num === 0) return "0";
-    
-    const sign = Math.sign(num);
-    const absNum = Math.abs(num);
+function formatHealth(number) {
+    if (number >= 1e9) {
+        return (number / 1e9).toFixed(2) + 'b';  
+    } else if (number >= 1e6) {
+        return (number / 1e6).toFixed(2) + 'm';  
+    } else if (number >= 1e3) {
+        return (number / 1e3).toFixed(2) + 'k';  
+    } else {
+        return number.toFixed(2);
+    }
+}
 
-    if (absNum < 1) return (sign === -1 ? '-' : '') + absNum.toFixed(2);
-
-    const abbrev = ["", "k", "m", "b", "t", "q", "Q"];
-    const index = Math.floor(Math.log10(absNum) / 3);
-  
-    const formattedNumber = ((sign === -1 ? -1 : 1) * absNum / Math.pow(10, index * 3)).toFixed(2) + abbrev[index];
-
-    if (Number.isInteger(absNum) && absNum < 1_000) return String(parseInt(formattedNumber));
-    return formattedNumber;
-};
+function formatDamage(i) {
+    if ( i >= 2083 && i <= 4166) return `&c`; // 20M-40M
+    if ( i >= 4166 && i <= 7291) return `&e`; // 40M-70M
+    if ( i > 7291 ) return `&a`; //70M+
+    return `&f`;
+}
 
 registerWhen(register('worldLoad', () => {
     kuudra = undefined;
-    kuudraLastHP = 100_000;
-    p4Start = undefined
+    kuudraLastHP = 24999;
+    p4Start = false
 }), () => Skyblock.subArea == "Kuudra's Hollow" && Settings.RendDamage)
 
-registerWhen(register('step', () => {
-    if(Math.round(Player.getY()) < 10 && p4Start == undefined){
+registerWhen(register('packetReceived', () => {
+    if(Math.round(Player.getY()) < 10 && !p4Start){
         p4Start = new Date().getTime()
     }
 
@@ -39,12 +40,20 @@ registerWhen(register('step', () => {
 
     if (!kuudra) return;
 
-    if (kuudra.getEntity()?.func_110143_aJ() > 25_000 || Player.getY() > 30) return;
-    
-    if (kuudraLastHP > kuudra.getEntity()?.func_110143_aJ() && kuudraLastHP - kuudra.getEntity()?.func_110143_aJ() > threshold / 12_000 && kuudraLastHP - kuudra.getEntity()?.func_110143_aJ() < 26_000) ChatLib.chat(`Someone pulled for §a${formatNumber(((kuudraLastHP - kuudra.getEntity()?.func_110143_aJ()) * 12000).toFixed(0))} §rdamage at §a${((new Date().getTime() - p4Start) / 1000).toFixed(2)}s§r.`)
+    kuudraHP = kuudra.getEntity().func_110143_aJ().toFixed(0)
 
+    if (kuudraHP > 25_000 || Player.getY() > 30) return;
+
+    let diff = kuudraLastHP - kuudraHP;
+    
+    if (diff > 1666) {
+        ChatLib.chat(`&d[IQ] &fSomeone pulled for §a${formatDamage(diff)}${formatHealth(diff * 9600)} §rdamage at §a${((new Date().getTime() - p4Start) / 1000).toFixed(2)}s§r.`)
+        kuudraLastHP = kuudra.getEntity().func_110143_aJ().toFixed(0);
+        return;
+    }
+    
     kuudraLastHP = kuudra.getEntity()?.func_110143_aJ();
-}).setFps(100), () => Skyblock.subArea == "Kuudra's Hollow" && Settings.RendDamage)
+}).setFilteredClass(Java.type("net.minecraft.network.play.server.S32PacketConfirmTransaction")), () => Skyblock.subArea == "Kuudra's Hollow" && Settings.RendDamage)
 
 
 

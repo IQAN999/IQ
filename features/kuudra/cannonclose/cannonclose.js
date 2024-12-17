@@ -1,5 +1,6 @@
 import Settings from "../../../config"
 import Skyblock from "../../../../BloomCore/Skyblock"
+import { registerWhen } from "../../../utils/reg";
 
 registerWhen(register("chat", () => {
     setTimeout(() => {

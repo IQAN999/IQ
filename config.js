@@ -49,7 +49,7 @@ class Settings {
   // General
   @SwitchProperty({
     name: "Pearl Cancel",
-    description: "Cancelamento de perolas atiradas contra o chão, muito pog!",
+    description: "Pearl cancel interact",
     category: "Geral",
     subcategory: "Cheats"
   })
@@ -57,7 +57,7 @@ class Settings {
 
   @SwitchProperty({
     name: "Pearl Refill",
-    description: "Refilla as ender pearls do inventario automaticamente!",
+    description: "Auto refill pearls from your sacks",
     category: "Geral",
     subcategory: "Cheats"
   })
@@ -72,71 +72,93 @@ class Settings {
   // AutoCloseWardrobe = false
 
   // Kuudra
-  @SwitchProperty({
-    name: "Remover Nametags dos Mobs da Kuudra",
-    description: "É isso ai que vc entendeu mano, tem muito oq explicar não",
-    category: "Kuudra"
-  })
-  HideMobNametags = false
-
-  @SwitchProperty({
-    name: "Highlight nos Parça + Fresh diferentinho",
-    description: "O nome já ta explicando pora",
-    category: "Kuudra"
-  })
-  TeamHighlight = false
-
-  @SwitchProperty({
-    name: "HP da Kuudra na Bossbar",
-    description: "Ajudando os pobres coitados que stunnan",
-    category: "Kuudra"
-  })
-  KuudraHP = false
-
-  @SwitchProperty({
-    name: "Aviso de roubo de supply",
-    description: "Avisa quando um salafrário está pegando o mesmo supply que você",
-    category: "Kuudra"
-  })
-  AlreadyPicking = false
-
-  @SwitchProperty({
-    name: "Dano do Rend",
-    description: "Mostra pra sua party o quão foda ou fraco vc é solando a kuudra",
-    category: "Kuudra"
-  })
-  RendDamage = false
-
-  @SwitchProperty({
-    name: "Onde a Kuudra Spawna",
-    description: "Avisa o lado que a kuudra vai spawnar na P4",
-    category: "Kuudra"
-  })
-  Direction = false
-
-  @SwitchProperty({
-    name: "Lag Tracker",
-    description: "Utilize isso caso vc ache q esvaziar o menu de pets e o storage faz lagar menos kkkkkkkkkkkkk",
-    category: "Kuudra"
-  })
-  LagTracker = false
 
   //Kuudra/Custom Splits
   @ButtonProperty({
     name: "Custom Splits",
-    description: "Abrir o menu de configuração dos splits da kuudra",
+    description: "Open custom splits menu",
     category: "Kuudra",
-    subcategory: "Custom Splits",
-    placeholder: "Abrir GUI!"
+    placeholder: "Open!"
   })
   MovePowderGui() {
     ChatLib.command("iqsplits", true)
   };
 
+  @SwitchProperty({
+    name: "Hide Kuudra Mob Nametags",
+    category: "Kuudra"
+  })
+  HideMobNametags = false
+
+  @SwitchProperty({
+    name: "Team Highlight",
+    category: "Kuudra"
+  })
+  TeamHighlight = false
+
+  @SwitchProperty({
+    name: "BossBar Kuudra HP",
+    category: "Kuudra"
+  })
+  KuudraHP = false
+
+  @SwitchProperty({
+    name: "Supply Already Picking Alert",
+    description: "Alert when other players is aready picking your supply",
+    category: "Kuudra"
+  })
+  AlreadyPicking = false
+
+  @SwitchProperty({
+    name: "Kuudra Server Lag Tracker",
+    category: "Kuudra"
+  })
+  LagTracker = false
+
+  @SwitchProperty({
+    name: "Kuudra Spawn Alert",
+    description: "Alerts you kuudra spawn side",
+    category: "Kuudra",
+    subcategory: "Phase 4"
+  })
+  Direction = false
+
+  @SwitchProperty({
+    name: "Rend Damage",
+    description: "Track party rend damage",
+    category: "Kuudra",
+    subcategory: "Phase 4"
+  })
+  RendDamage = false
+
+  @SwitchProperty({
+    name: "Key Reminder",
+    description: "Alert when you have one key remaining",
+    category: "Kuudra",
+    subcategory: "Phase 4"
+  })
+  KeyReminder = false
+
+  @SwitchProperty({
+    name: "Chest Open",
+    description: "Opened chest party chat message [Required for auto requeue]",
+    category: "Kuudra",
+    subcategory: "Phase 4"
+  })
+  ChestOpen = false
+
+  @SwitchProperty({
+    name: "Auto Requeue",
+    description: "Automatic requeue kuudra run after detect all players chest open messages",
+    category: "Kuudra",
+    subcategory: "Phase 4"
+  })
+  AutoRequeue = false
+
   // cheats
   @SwitchProperty({
     name: "Auto BM",
-    description: "Compra os balistos mecanicos automaticamente",
+    description: "Auto buy ballista mechanic perk",
     category: "Kuudra",
     subcategory: "Cheats"
   })
@@ -144,7 +166,7 @@ class Settings {
 
   @SwitchProperty({
     name: "Auto Cannon Close",
-    description: "Fecha a GUI automaticamente após comprar o human cannonball",
+    description: "Auto close shop menu after buy human cannonball perk",
     category: "Kuudra",
     subcategory: "Cheats"
   })
@@ -152,8 +174,11 @@ class Settings {
 
   constructor() {
     this.initialize(this);
-    this.setCategoryDescription("Geral", `&d&lFunções Gerais`);
-    this.setCategoryDescription("Kuudra", "&d&lFunções da Kuudra")
+
+    this.setCategoryDescription("Geral", `&d&lGeneral Options`);
+    this.setCategoryDescription("Kuudra", "&d&lKuudra Options")
+
+    this.addDependency("Auto Requeue", "Chest Open");
   }
 }
 export default new Settings();
