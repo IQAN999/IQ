@@ -3,7 +3,7 @@ import Skyblock from "../../../../BloomCore/Skyblock"
 import Settings from "../../../config"
 import RenderLib from "../../../../RenderLib"
 import RenderLibV2 from "../../../../RenderLibV2"
-import { toInt } from "../../../../BloomCore/utils/Utils"
+import Kuudra from "../../../utils/Kuudra"
 
 const areas = [
     {
@@ -11,43 +11,84 @@ const areas = [
         "pos2" : [-139, -85],
         "waypoints" : [
             { 
-                "coords" : [-93, 126, -105], // tri cannon
+                "coords" : [-93, 127.5, -105], // tri 
                 "rgb" : [0, 255, 255],
-                "block" : [-142, 77, -87]
+                "block" : [-142, 77, -87],
+                "pre" : 6
             },
             { 
                 "coords" : [-105, 99, -111], // x
                 "rgb" : [0, 255, 255],
+                "size" : 0.3,
+                "pre" : 1
             },
             { 
                 "coords" : [-97, 126, -111], // shop
-                "rgb" : [0, 255, 255]
+                "rgb" : [0, 255, 255],
+                "pre" : 7
             },
             { 
                 "coords" : [-97, 102, -98], // =
-                "rgb" : [0, 255, 255]
+                "rgb" : [0, 255, 255],
+                "size" : 0.3,
+                "pre" : 5
             },
             { 
-                "coords" : [-105, 149, -98], // barra
-                "rgb" : [0, 255, 255]
+                "coords" : [-105, 149, -98], // slash
+                "rgb" : [0, 255, 255],
+                "pre" : 4
             },
             { 
                 "coords" : [-109, 151, -105], // xc
-                "rgb" : [0, 255, 255]
+                "rgb" : [0, 255, 255],
+                "pre" : 2
             }
         ],
         "areaName" : "square safe"
     },
     {
-        "pos1" : [-142, -90],
-        "pos2" : [-140, -89],
+        "pos1" : [-143, -93],
+        "pos2" : [-138, -88],
         "waypoints" : [
             { 
-                "coords" : [-93, 126, -105], 
-                "rgb" : [255, 255, 255]
+                "coords" : [-93, 107, -105], // tri 
+                "rgb" : [0, 255, 255],
+                "block" : [-141, 78, -91],
+                "size" : 0.35,
+                "pre" : 6
+            },
+            { 
+                "coords" : [-105, 150, -111], // x
+                "rgb" : [0, 255, 255],
+                "size" : 0.5,
+                "pre" : 1
+            },
+            { 
+                "coords" : [-97, 105, -111], // shop
+                "rgb" : [0, 255, 255],
+                "size" : 0.35,
+                "pre" : 7
+            },
+            { 
+                "coords" : [-97, 97, -98], // =
+                "rgb" : [0, 255, 255],
+                "size" : 0.3,
+                "pre" : 5
+            },
+            { 
+                "coords" : [-105, 155, -98.5], // slash
+                "rgb" : [0, 255, 255],
+                "size" : 0.5,
+                "pre" : 4
+            },
+            { 
+                "coords" : [-109, 155, -105], // xc
+                "rgb" : [0, 255, 255],
+                "size" : 0.5,
+                "pre" : 2
             }
         ],
-        "areaName" : "square mid"
+        "areaName" : "square top"
     },
     {
         "pos1" : [-126, -104],
@@ -208,15 +249,15 @@ const areas = [
         "pos2" : [-125, -45],
         "waypoints" : [
             { 
-                "coords" : [-109, 126, -88], // slash
+                "coords" : [-104.5, 155, -98], // slash
                 "rgb" : [0, 80, 255],
-                "block" : [-112, 76, -68],
+                "block" : [-113, 76.5, -69],
                 "size" : 0.6
             },
             { 
-                "coords" : [-142, 155, -89], // square
-                "rgb" : [0, 80, 255],
-                "size" : 0.6
+                "coords" : [-139, 155, -88], // square
+                "rgb" : [0, 255, 255],
+                "size" : 0.5
             }
         ],
         "areaName" : "slash"
@@ -256,10 +297,11 @@ function resetLastAreaChecked(){
     }
     drawAreaPearlWaypoints = lastAreaChecked.waypoints
 }
-register("worldLoad", () => {
+
+registerWhen(register("worldLoad", () => {
     let drawAreaPearlWaypoints = []
     resetLastAreaChecked()
-})
+}), () => Settings.PearlWaypoints)
 
 registerWhen(register("tick", () => {
     playerInArea = false
@@ -279,36 +321,48 @@ registerWhen(register("tick", () => {
             }
         }
     }) 
-}), () => Skyblock.subArea === "Kuudra's Hollow")
+}), () => Settings.PearlWaypoints && Skyblock.subArea === "Kuudra's Hollow" && Kuudra.getPhase() == 1)
 
-register('renderWorld', () => {
+registerWhen(register('renderWorld', () => {
 
     drawAreaPearlWaypoints.forEach((waypoint, positionInArray) => {
         size = "size" in waypoint ? waypoint.size : 0.4
-        RenderLib.drawSphere(
-            waypoint.coords[0]-0.5, waypoint.coords[1], waypoint.coords[2]-0.5, 
-            size, //radius
-            20, //slices 
-            20, // stacks
-            -90, // rotate
-            0, // rotate
-            0, // rotate
-            waypoint.rgb[0]/255, waypoint.rgb[1]/255, waypoint.rgb[2]/255, 
-            1, //alpha
-            true, 
-            false
-        );
+        canDraw = true
 
-        if("block" in waypoint){
-            wx = 1
-            h = 1
-            wz = 1
-            d = false
-            lw = 2
-            rbgBlock = [waypoint.rgb[0]/255, waypoint.rgb[1]/255, waypoint.rgb[2]/255]
-            RenderLibV2.drawEspBoxV2(waypoint.block[0]+ 0.5, waypoint.block[1], waypoint.block[2]+ 0.5, wx, h, wz, ...rbgBlock, 1, d, lw);
+        missingPre = Kuudra.getMissingPre();
+        
+        if(waypoint.hasOwnProperty("pre") &&  missingPre != false){
+            if(waypoint.pre != missingPre){
+                canDraw = false
+            }
         }
+        
+        if(canDraw){
+            RenderLib.drawSphere(
+                waypoint.coords[0]-0.5, waypoint.coords[1], waypoint.coords[2]-0.5, 
+                size, //radius
+                20, //slices 
+                20, // stacks
+                -90, // rotate
+                0, // rotate
+                0, // rotate
+                waypoint.rgb[0]/255, waypoint.rgb[1]/255, waypoint.rgb[2]/255, 
+                1, //alpha
+                true, 
+                false
+            );
+
+            if("block" in waypoint){
+                wx = 1
+                h = 1
+                wz = 1
+                d = false
+                lw = 2
+                rbgBlock = [waypoint.rgb[0]/255, waypoint.rgb[1]/255, waypoint.rgb[2]/255]
+                RenderLibV2.drawEspBoxV2(waypoint.block[0]+ 0.5, waypoint.block[1], waypoint.block[2]+ 0.5, wx, h, wz, ...rbgBlock, 1, d, lw);
+            }
+        }        
     })
 
     // I know the arguments seem confusing at first, but everything is written down in the JSDoc
-});
+}), () => Settings.PearlWaypoints && Skyblock.subArea === "Kuudra's Hollow" && Kuudra.getPhase() == 1)

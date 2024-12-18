@@ -13,6 +13,7 @@
 	supply_waypoint_color = "255,255,0,0"
 	dano_do_rend = true
 	lag_tracker = true
+	pearl_waypoints = true
 	auto_requeue = false
 	kuudra_server_lag_tracker = true
 	onde_a_kuudra_spawna = true
@@ -22,6 +23,7 @@
 	supply_already_picking_alert = true
 	hp_da_kuudra_na_bossbar = true
 	team_highlight = true
+	pille_waypoints = true
 	supply_waypoints = true
 	bossbar_kuudra_hp = true
 	aviso_de_roubo_de_supply = true

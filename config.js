@@ -98,6 +98,18 @@ class Settings {
   SupplyWaypointColor = Color.GREEN
 
   @SwitchProperty({
+    name: "Pearl Waypoints",
+    category: "Kuudra"
+  })
+  PearlWaypoints = false
+
+  @SwitchProperty({
+    name: "Pille Waypoints",
+    category: "Kuudra"
+  })
+  PilleWaypoints = false
+
+  @SwitchProperty({
     name: "Hide Kuudra Mob Nametags",
     category: "Kuudra"
   })
