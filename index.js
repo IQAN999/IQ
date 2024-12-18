@@ -54,6 +54,8 @@ const loadModules = () => {
 // Load All Modules
 loadModules()
 
+import "./features/kuudra/pearlwaypoints/pearlwaypoints"
+
 // Commands
 register("command", () => { settings.openGUI(); return; }).setCommandName(`iq`, true)
 register("command", () => splits.openGUI()).setName("iqsplits");

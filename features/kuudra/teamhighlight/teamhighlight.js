@@ -34,7 +34,7 @@ registerWhen(register("chat", (player) => {
   freshers.set(disectedName, Date.now() + 10000)
 
   setTimeout(() => freshers.delete(disectedName), 10000);
-}).setCriteria("Party > ${player}: FRESH").setStart(), () => Skyblock.subArea === "Kuudra's Hollow" && Settings.TeamHighlight)
+}).setCriteria("Party > ${player}: FRESH").setStart(), () => Skyblock.subArea === "Kuudra's Hollow" && Settings.TeamHighlight )
 
 // render freshbox and normalbox
 registerWhen(register("renderWorld", () => {
@@ -78,9 +78,9 @@ registerWhen(register("renderWorld", () => {
           freshTimeColor = "§a"
         }
 
-        Tessellator.drawString(`${freshTimeColor}${freshTime}`, x, y + 4, z, 0xF0DC02, true, 3)
+        Tessellator.drawString(`${freshTimeColor}${freshTime}`, x, y + 4, z, 0xF0DC02, true, 0.1, false)
       }
       
       Tessellator.drawString(name, x, y + 2.5, z, hex, true, 1.50)
     }
-}), () => Skyblock.subArea === "Kuudra's Hollow" && Settings.TeamHighlight && buildPhase)
+}), () => Skyblock.subArea === "Kuudra's Hollow" && Settings.TeamHighlight)
