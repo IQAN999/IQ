@@ -19,28 +19,33 @@ const areas = [
             { 
                 "coords" : [-105, 99, -111], // x
                 "rgb" : [0, 255, 255],
+                "block" : [-142, 77, -87],
                 "size" : 0.3,
                 "pre" : 1
             },
             { 
                 "coords" : [-97, 126, -111], // shop
                 "rgb" : [0, 255, 255],
+                "block" : [-142, 77, -87],
                 "pre" : 7
             },
             { 
                 "coords" : [-97, 102, -98], // =
                 "rgb" : [0, 255, 255],
+                "block" : [-142, 77, -87],
                 "size" : 0.3,
                 "pre" : 5
             },
             { 
                 "coords" : [-105, 149, -98], // slash
                 "rgb" : [0, 255, 255],
+                "block" : [-142, 77, -87],
                 "pre" : 4
             },
             { 
                 "coords" : [-109, 151, -105], // xc
                 "rgb" : [0, 255, 255],
+                "block" : [-142, 77, -87],
                 "pre" : 2
             }
         ],
@@ -60,30 +65,35 @@ const areas = [
             { 
                 "coords" : [-105, 150, -111], // x
                 "rgb" : [0, 255, 255],
+                "block" : [-141, 78, -91],
                 "size" : 0.5,
                 "pre" : 1
             },
             { 
                 "coords" : [-97, 105, -111], // shop
                 "rgb" : [0, 255, 255],
+                "block" : [-141, 78, -91],
                 "size" : 0.35,
                 "pre" : 7
             },
             { 
                 "coords" : [-97, 97, -98], // =
                 "rgb" : [0, 255, 255],
+                "block" : [-141, 78, -91],
                 "size" : 0.3,
                 "pre" : 5
             },
             { 
                 "coords" : [-105, 155, -98.5], // slash
                 "rgb" : [0, 255, 255],
+                "block" : [-141, 78, -91],
                 "size" : 0.5,
                 "pre" : 4
             },
             { 
                 "coords" : [-109, 155, -105], // xc
                 "rgb" : [0, 255, 255],
+                "block" : [-141, 78, -91],
                 "size" : 0.5,
                 "pre" : 2
             }
@@ -143,7 +153,7 @@ const areas = [
     },
     {
         "pos1" : [-126, -120],
-        "pos2" : [-136, -124],
+        "pos2" : [-138, -124],
         "waypoints" : [
             { 
                 "coords" : [-109, 155, -105],// xc 38%
@@ -160,7 +170,7 @@ const areas = [
         "areaName" : "stair"
     },
     {
-        "pos1" : [-127, -125],
+        "pos1" : [-127, -124],
         "pos2" : [-140, -133],
         "waypoints" : [
             { 
@@ -257,7 +267,8 @@ const areas = [
             { 
                 "coords" : [-139, 155, -88], // square
                 "rgb" : [0, 255, 255],
-                "size" : 0.5
+                "size" : 0.5,
+                "dontShowMissingPre" : 3
             }
         ],
         "areaName" : "slash"
@@ -336,6 +347,10 @@ registerWhen(register('renderWorld', () => {
                 canDraw = false
             }
         }
+
+        if(waypoint.hasOwnProperty("dontShowMissingPre") && missingPre == waypoint.dontShowMissingPre){
+            canDraw = false
+        }
         
         if(canDraw){
             RenderLib.drawSphere(
@@ -343,13 +358,13 @@ registerWhen(register('renderWorld', () => {
                 size, //radius
                 20, //slices 
                 20, // stacks
-                -90, // rotate
+                0, // rotate
                 0, // rotate
                 0, // rotate
                 waypoint.rgb[0]/255, waypoint.rgb[1]/255, waypoint.rgb[2]/255, 
                 1, //alpha
                 true, 
-                false
+                true
             );
 
             if("block" in waypoint){

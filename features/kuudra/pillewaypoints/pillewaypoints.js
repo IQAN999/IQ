@@ -7,14 +7,14 @@ import renderBeaconBeam from "../../../../BeaconBeam"
 let SupplyPlacePos = [];
 
 // r, g, b, a
-pilleNormalCollor = [200/255, 200/255, 200/255, 0.8] 
-pilleNoPreCollor = [0, 255/255, 0, 0.8]
+pilleNormalCollor = [200/255, 200/255, 200/255, 0.7] 
+pilleNoPreCollor = [0, 255/255, 0, 0.7]
 
 registerWhen(register("worldLoad", () => {
     SupplyPlacePos = [
         {
             "pos" : [-98, 78.125, -112.9375], // shop
-            "noPreValue" : 6
+            "noPreValue" : 7
         },
         {
             "pos" : [-110, 78.125, -106], // xc
@@ -22,14 +22,14 @@ registerWhen(register("worldLoad", () => {
         },
         {
             "pos" : [-106, 78.125, -99.0625], // slash
-            "noPreValue" : 3
-        },
-        {
-            "pos" : [-94, 78.125, -106], // equals
             "noPreValue" : 4
         },
         {
-            "pos" : [-98, 78.125, -99.0625], // tri
+            "pos" : [-94, 78.125, -106], // tri
+            "noPreValue" : 6
+        },
+        {
+            "pos" : [-98, 78.125, -99.0625], // equals
             "noPreValue" : 5
         },
         {

@@ -110,6 +110,12 @@ class Settings {
   PilleWaypoints = false
 
   @SwitchProperty({
+    name: "Build Overlay",
+    category: "Kuudra"
+  })
+  BuildOverlay = false
+
+  @SwitchProperty({
     name: "Hide Kuudra Mob Nametags",
     category: "Kuudra"
   })

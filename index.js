@@ -13,6 +13,7 @@ const modules = [
   { path: "./features/kuudra/supplywaypoints/supplywaypoints" },
   { path: "./features/kuudra/pillewaypoints/pillewaypoints" },
   { path: "./features/kuudra/pearlwaypoints/pearlwaypoints" },
+  { path: "./features/kuudra/buildoverlay/buildoverlay" },
   { path: "./features/kuudra/teamhighlight/teamhighlight" },
   { path: "./features/kuudra/hidemobnametags/hidemobnametags" },
   { path: "./features/kuudra/kuudrahp/kuudrahp" },

@@ -27,6 +27,7 @@
 	supply_waypoints = true
 	bossbar_kuudra_hp = true
 	aviso_de_roubo_de_supply = true
+	build_overlay = true
 
 	[kuudra.kuudra_cheats]
 		auto_bm_demon_mode_hd_4k_2012 = true

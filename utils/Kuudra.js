@@ -1,5 +1,6 @@
 import { registerWhen } from "./reg";
 import Skyblock from "../../BloomCore/Skyblock";
+import { extractIGN } from "./functions";
 
 class Kuudra {
 
@@ -59,7 +60,7 @@ class Kuudra {
                         this.phase = 8;
                         break
                 }
-            }).setCriteria("${msg}"), () => Skyblock.subArea === "Kuudra's Hollow")
+            }).setCriteria("${msg}"), () => Skyblock.subArea == "Kuudra's Hollow")
 
             // phase 7 (dps)
             registerWhen(register("tick", () => {
@@ -67,7 +68,7 @@ class Kuudra {
                     this.phase = 7
                     // ChatLib.chat("Kuudra phase detected: 7 dps")
                 } 
-            }), () => Skyblock.subArea === "Kuudra's Hollow")
+            }), () => Skyblock.subArea == "Kuudra's Hollow")
         
         // CAPTURING NO PRE MESSAGE
         registerWhen(register("chat", (supply) => {
@@ -87,12 +88,24 @@ class Kuudra {
                 if (pre.name == chatNoPre) this.setMissingPre(pre.value)
             })
         }).setCriteria("Party > ${*}: No ${supply}!"), () => Skyblock.subArea == "Kuudra's Hollow" && this.getPhase() == 1)
+
+        // CAPTURING FRESHED PLAYERS DURING BUILD
+        registerWhen(register("chat", (player) => {
+          const disectedName = extractIGN(player)
+        
+          if (!disectedName) return;
+        
+          this.addFresh(disectedName, Date.now() + 10000)
+        
+          setTimeout(() => this.deleteFresh(disectedName), 10000);
+        }).setCriteria("Party > ${player}: FRESH").setStart(), () => Skyblock.subArea == "Kuudra's Hollow")
     }
 
     // reset all variables
     reset() {
         this.phase = false
         this.missingPre = false
+        this.fresh = {}
     }
 
     // get kuudra phase
@@ -101,13 +114,25 @@ class Kuudra {
     // set missing pre 
     setMissingPre(pre){
         if(this.missingPre == false) {
-            ChatLib.chat("Novo numero de pre detectado: "+pre)
             this.missingPre = pre
         } 
     }
 
     // get missing pre
     getMissingPre() { return this.missingPre }
+
+    // add a new player as fresh
+    addFresh(name, timeToFinish){
+        this.fresh[name] = timeToFinish
+    }
+
+    // add a new player as fresh
+    deleteFresh(name){
+        if(this.fresh.hasOwnProperty(name)) { delete this.fresh[name]}
+    }
+
+    // get fresh
+    getFresh() { return this.fresh }
 
 }
 
