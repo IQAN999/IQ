@@ -13,7 +13,7 @@ import { getRGB1 } from "../../../utils/functions"
 
 let supplies = []
 
-registerWhen(register("tick", () => {
+registerWhen(register("step", () => {
     // Get all giant zombies and filter out the ones that are not on the ground
     supplies = World.getAllEntitiesOfType(GIANT_CLASS).filter(e =>
         e.getEntity().func_70694_bm()?.toString() == "1xitem.skull@3"

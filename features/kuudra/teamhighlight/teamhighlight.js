@@ -78,7 +78,7 @@ registerWhen(register("renderWorld", () => {
           freshTimeColor = "§a"
         }
 
-        Tessellator.drawString(`${freshTimeColor}${freshTime}`, x, y + 4, z, 0xF0DC02, true, 0.1, false)
+        Tessellator.drawString(`${freshTimeColor}${freshTime}`, x, y + 4, z, 0xF0DC02, false, 3)
       }
       
       Tessellator.drawString(name, x, y + 2.5, z, hex, true, 1.50)

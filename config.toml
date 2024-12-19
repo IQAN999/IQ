@@ -10,7 +10,7 @@
 [kuudra]
 	"highlight_nos_parça_+_fresh_diferentinho" = true
 	ding_human_cannonball = false
-	supply_waypoint_color = "255,255,0,0"
+	supply_waypoint_color = "255,0,249,255"
 	dano_do_rend = true
 	lag_tracker = true
 	pearl_waypoints = true
