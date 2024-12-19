@@ -2,17 +2,14 @@ import settings from "../../../config"
 import Skyblock from "../../../../BloomCore/Skyblock";
 import { registerWhen } from "../../../utils/reg";
 
-
 /**
  * Variables used to track and display Kuudra HP and entity.
  */
 const EntityMagmaCube = Java.type('net.minecraft.entity.monster.EntityMagmaCube');
 let cubes = World.getAllEntitiesOfType(EntityMagmaCube.class);
-// let HPDisplay = ["100,000/100,0000 ❤", 0, 0, 0];
 let currentHP = 0;
 
-export function getKuudraHP() { return currentHP }; //Re
-
+export function getKuudraHP() { return currentHP };
 
 registerWhen(register("tick", () => {
     cubes = World.getAllEntitiesOfType(EntityMagmaCube.class);
@@ -21,8 +18,6 @@ registerWhen(register("tick", () => {
     kuudra = cubes.find((cube) => cube.getWidth().toFixed(0) == 15 && cube.getEntity().func_110143_aJ() <= 100000);
     if (kuudra != undefined) {
         currentHP = kuudra.getEntity().func_110143_aJ().toFixed(0);
-           
-        // HPDisplay = [`${currentHP.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}/100,000 ❤`, kuudra.getX(), kuudra.getY(), kuudra.getZ()];
 
         // KUUDRA SPAWN DETECT
         if (currentHP <= 25000 && currentHP > 24900) {
@@ -39,16 +34,4 @@ registerWhen(register("tick", () => {
                 Client.Companion.showTitle(`&4&lBACK!`, "", 0, 25, 5);
         }
     }
-    // else {
-    //     HPDisplay = ["100,000/100,0000 ❤", 0, 0, 0];
-    // }
 }), () => Skyblock.subArea === "Kuudra's Hollow" && settings.Direction);
-
-
-
-/**
- * Reset Kuudra's UUID on world exit.
- */
-register('worldUnload', () => {
-    // HPDisplay = ["100,000/100,0000 ❤", 0, 0, 0];
-});

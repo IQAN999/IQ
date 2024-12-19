@@ -34,7 +34,7 @@
 	[kuudra.phase_4]
 		chest_open = true
 		auto_requeue = true
-		rend_damage = true
+		rend_damage = false
 		kuudra_spawn_alert = true
 		key_reminder = true
 
