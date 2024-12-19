@@ -8,7 +8,7 @@ import Kuudra from "../../../utils/Kuudra"
 const areas = [
     {
         "pos1" : [-142, -88],
-        "pos2" : [-139, -85],
+        "pos2" : [-135, -82],
         "waypoints" : [
             { 
                 "coords" : [-93, 127.5, -105], // tri 
@@ -53,7 +53,7 @@ const areas = [
     },
     {
         "pos1" : [-143, -93],
-        "pos2" : [-138, -88],
+        "pos2" : [-135, -88],
         "waypoints" : [
             { 
                 "coords" : [-93, 107, -105], // tri 
@@ -372,7 +372,7 @@ registerWhen(register('renderWorld', () => {
                 h = 1
                 wz = 1
                 d = false
-                lw = 2
+                lw = 3
                 rbgBlock = [waypoint.rgb[0]/255, waypoint.rgb[1]/255, waypoint.rgb[2]/255]
                 RenderLibV2.drawEspBoxV2(waypoint.block[0]+ 0.5, waypoint.block[1], waypoint.block[2]+ 0.5, wx, h, wz, ...rbgBlock, 1, d, lw);
             }
