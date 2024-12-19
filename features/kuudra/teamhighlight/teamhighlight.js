@@ -35,7 +35,7 @@ registerWhen(register("renderWorld", () => {
       Tessellator.drawString(name, x, y + 2.5, z, hex, true, 1.50)
     }
 
-    if (freshedPlayers.hasOwnProperty(name)) {
+    if (freshedPlayers.hasOwnProperty(name) && Kuudra.getPhase() == 2) {
       freshTime = ((freshedPlayers[name] - Date.now()) / 1000).toFixed(2)
 
       freshTimeMs = (freshedPlayers[name] - Date.now())
