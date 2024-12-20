@@ -341,7 +341,7 @@ registerWhen(register("tick", () => {
             }
         }
     }) 
-}), () => Settings.PearlWaypoints && Skyblock.subArea === "Kuudra's Hollow"  && Kuudra.getPhase() == 2)
+}), () => Settings.PearlWaypoints && Skyblock.subArea === "Kuudra's Hollow"  && Kuudra.getPhase() == 1)
 
 registerWhen(register('renderWorld', () => {
 
@@ -389,4 +389,4 @@ registerWhen(register('renderWorld', () => {
     })
 
     // I know the arguments seem confusing at first, but everything is written down in the JSDoc
-}), () => Settings.PearlWaypoints && Skyblock.subArea === "Kuudra's Hollow" && Kuudra.getPhase() == 2)
+}), () => Settings.PearlWaypoints && Skyblock.subArea === "Kuudra's Hollow" && Kuudra.getPhase() == 1)
