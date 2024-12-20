@@ -21,11 +21,6 @@ registerWhen(register("tick", () => {
         e.getName().includes("PROGRESS: ") && e.getName().includes("%")
     )
 
-
-    // buildPiles.forEach(element => {
-    //     ChatLib.chat(element)
-    // });
-
 }), () => Settings.BuildOverlay && Skyblock.subArea == "Kuudra's Hollow" && Kuudra.getPhase() == 2)
 
 registerWhen(register("renderWorld", () => {

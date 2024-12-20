@@ -105,7 +105,7 @@ const areas = [
         "pos2" : [-140, -120],
         "waypoints" : [
             { 
-                "coords" : [-109, 160, -105], // xc
+                "coords" : [-109, 163, -105], // xc
                 "rgb" : [255, 135, 0],
                 "block" : [-131, 78, -115],
                 "size" : 0.6
@@ -174,7 +174,7 @@ const areas = [
         "pos2" : [-140, -133],
         "waypoints" : [
             { 
-                "coords" : [-109, 155, -105], // xc 38%
+                "coords" : [-109, 157, -105], // xc 38%
                 "rgb" : [255, 255, 255],
                 "block" : [-135, 78, -129],
                 "size" : 0.6
@@ -241,7 +241,7 @@ const areas = [
         "pos2" : [-45, -65],
         "waypoints" : [
             { 
-                "coords" : [-97, 157, -98], // equals
+                "coords" : [-97, 155, -98], // equals
                 "rgb" : [0, 255, 0],
                 "block" : [-66, 76, -87],
                 "size" : 0.6
@@ -250,6 +250,12 @@ const areas = [
                 "coords" : [-76, 126, -134], // shop
                 "rgb" : [255, 0, 0],
                 "size" : 0.5
+            },
+            { 
+                "coords" : [-97, 86, -98], // quals 70
+                "rgb" : [0, 255, 0],
+                "block" : [-66, 76, -89],
+                "size" : 0.3
             }
         ],
         "areaName" : "equals"
@@ -315,6 +321,9 @@ registerWhen(register("worldLoad", () => {
 }), () => Settings.PearlWaypoints)
 
 registerWhen(register("tick", () => {
+
+    if(Object.keys(lastAreaChecked).length === 0) return
+
     playerInArea = false
     let xPlayer = Player.getX()
     let zPlayer = Player.getZ()
@@ -332,7 +341,7 @@ registerWhen(register("tick", () => {
             }
         }
     }) 
-}), () => Settings.PearlWaypoints && Skyblock.subArea === "Kuudra's Hollow" && Kuudra.getPhase() == 1)
+}), () => Settings.PearlWaypoints && Skyblock.subArea === "Kuudra's Hollow"  && Kuudra.getPhase() == 2)
 
 registerWhen(register('renderWorld', () => {
 
@@ -380,4 +389,4 @@ registerWhen(register('renderWorld', () => {
     })
 
     // I know the arguments seem confusing at first, but everything is written down in the JSDoc
-}), () => Settings.PearlWaypoints && Skyblock.subArea === "Kuudra's Hollow" && Kuudra.getPhase() == 1)
+}), () => Settings.PearlWaypoints && Skyblock.subArea === "Kuudra's Hollow" && Kuudra.getPhase() == 2)
