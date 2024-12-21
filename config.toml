@@ -1,0 +1,30 @@
+
+[geral]
+
+	[geral.cheats]
+		pearl_refill = true
+		pearl_cancel = true
+
+[kuudra]
+	supply_waypoint_color = "255,75,255,0"
+	hide_kuudra_mob_nametags = true
+	supply_already_picking_alert = true
+	pearl_waypoints = true
+	pille_waypoints = true
+	team_highlight = true
+	supply_waypoints = false
+	bossbar_kuudra_hp = true
+	kuudra_server_lag_tracker = true
+	build_overlay = true
+
+	[kuudra.cheats]
+		auto_bm = true
+		auto_cannon_close = true
+
+	[kuudra.phase_4]
+		chest_open = true
+		rend_damage = false
+		auto_requeue = true
+		kuudra_spawn_alert = true
+		key_reminder = true
+
