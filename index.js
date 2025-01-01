@@ -10,6 +10,7 @@ const modules = [
   { path: "./features/general/pearlrefill/pearlrefill" },
 
   // Kuudra
+  { path: "./features/kuudra/supplytimes/supplytimes" },
   { path: "./features/kuudra/supplywaypoints/supplywaypoints" },
   { path: "./features/kuudra/pillewaypoints/pillewaypoints" },
   { path: "./features/kuudra/pearlwaypoints/pearlwaypoints" },
@@ -48,9 +49,8 @@ const loadModules = () => {
   //ChatLib.chat(`&lAll features loaded, total loading time: ${total}ms`);
   
   ChatLib.chat("");
-  ChatLib.chat("&aIQ Module loaded &f- &dFor faster updates, visit xvideos.com");
-  ChatLib.chat("&fType &b&l/iq &fto open GUI");
-  ChatLib.chat("&c&lThis module is a rat !");
+  ChatLib.chat("&d&lIQ LOADED &f&lTYPE &b&l/IQ &f&lTO OPEN GUI");
+  ChatLib.chat("&f&lVISIT &c&lXVIDEOS.COM &f&lFOR NEW UPDATES!");
   ChatLib.chat("");
 };
 

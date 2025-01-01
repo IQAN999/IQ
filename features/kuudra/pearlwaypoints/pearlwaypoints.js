@@ -139,9 +139,9 @@ const areas = [
                 "size" : 0.6
             },
             { 
-                "coords" : [-139, 110, -89], // square
+                "coords" : [-142, 152, -79], // square
                 "rgb" : [0, 255, 255],
-                "size" : 0.4
+                "size" : 0.6
             },
             { 
                 "coords" : [-49, 121.5, -60], // x 70%
@@ -275,7 +275,13 @@ const areas = [
                 "rgb" : [0, 255, 255],
                 "size" : 0.5,
                 "dontShowMissingPre" : 3
-            }
+            },
+            { 
+                "coords" : [-133, 157, -131], // xc
+                "rgb" : [255, 135, 0],
+                "size" : 0.7,
+                "dontShowMissingPre" : 2
+            },
         ],
         "areaName" : "slash"
     },

@@ -25,22 +25,26 @@ class Kuudra {
                     case msg.includes("[NPC] Elle: Okay adventurers, I will go and fish up Kuudra!"):
                         // ChatLib.chat("Kuudra phase detected: 1 Supply")
                         this.phase = 1
+                        this.times.supplies = Date.now()
                         break
                     // phase 2 (build)
                     case msg.includes("[NPC] Elle: OMG! Great work collecting my supplies!"):
                         // ChatLib.chat("Kuudra phase detected: 2 Build")
                         this.phase = 2
+                        this.times.build = Date.now()
                         break
                     // phase 3 (eaten)
                     case msg.includes("[NPC] Elle: Phew! The Ballista is finally ready! It should be strong enough to tank Kuudra's blows now!"):
                         // ChatLib.chat("Kuudra phase detected: Eaten")
                         this.phase = 2
+                        this.times.eaten = Date.now()
                         break
                     // phase 4 (stun)
                     case msg.includes("has been eaten by Kuudra!"):
                         if(this.phase == 3 && !msg.includes("Elle")) { 
                             // ChatLib.chat("Kuudra phase detected: Stun")
                             this.phase = 4 
+                            this.times.stun = Date.now()
                         }
                         
                         break
@@ -48,16 +52,19 @@ class Kuudra {
                     case msg.includes("destroyed one of Kuudra's pods!"):
                         // ChatLib.chat("Kuudra phase detected: Hit Phase")
                         if(this.phase == 4) this.phase = 5
+                        this.times.dps = Date.now()
                         break
                     // phase 6 (skip)
                     case msg.includes("[NPC] Elle: POW! SURELY THAT'S IT! I don't think he has any more in him!"):
                         // ChatLib.chat("Kuudra phase detected: Skip")
                         this.phase = 6;
+                        this.times.skip = Date.now()
                         break
                     // phase 8 (run ends)
                     case msg.includes("KUUDRA DOWN!") || msg.includes("DEFEAT"):
                         // ChatLib.chat("Kuudra phase detected: 8 Run ends")
                         this.phase = 8;
+                        this.times.kill = Date.now()
                         break
                 }
             }).setCriteria("${msg}"), () => Skyblock.subArea == "Kuudra's Hollow")
@@ -106,6 +113,16 @@ class Kuudra {
         this.phase = false
         this.missingPre = false
         this.fresh = {}
+        this.times = {
+            "supplies" : 0,
+            "build" : 0,
+            "eaten" : 0,
+            "stun" : 0,
+            "dps" : 0,
+            "skip" : 0,
+            "kill" :0,
+            "overall" :0
+        }
     }
 
     // get kuudra phase
@@ -133,6 +150,9 @@ class Kuudra {
 
     // get fresh
     getFresh() { return this.fresh }
+
+    // get time
+    getTime(name) {return this.times[name]}
 
 }
 

@@ -3,54 +3,30 @@ import { version } from "./utils/constants"
 
 @Vigilant("IQ", `§d§l[IQ-v${version}]§r by IQAN`, {
   getCategoryComparator: () => (a, b) => {
-    const categories = ["Geral", "Kuudra"]
+    const categories = ["General", "Kuudra"]
     return categories.indexOf(a.name) - categories.indexOf(b.name);
+  },
+  getSubcategoryComparator: () => (a, b) => {
+    // These function examples will sort the subcategories by the order in the array
+    const subcategories = ["General", "P1", "P2", "P3", "P4", "Cheats"];
+
+    return subcategories.indexOf(a.getValue()[0].attributesExt.subcategory) -
+        subcategories.indexOf(b.getValue()[0].attributesExt.subcategory);
+  },
+  getPropertyComparator: () => (a, b) => {
+    // And this will put the properties in the order we want them to appear.
+    const names = ["Supply Times", "Move Supply Times"];
+
+    return names.indexOf(a.attributesExt.name) - names.indexOf(b.attributesExt.name);
   }
 })
 class Settings {
-  // @SliderProperty({
-  //   name: "Draw Chat Waypoints",
-  //   description: "Creates waypoints taken from chat messages in patcher sendcoords format and how long they should stay (in seconds)\n&cTurned off at 0",
-  //   min: 0,
-  //   max: 160,
-  //   category: "General"
-  // })
-  // waypoint = 0;
-
-  // @ColorProperty({
-  //   name: 'Waypoint Color',
-  //   description: `Sets the color for waypoints`,
-  //   category: 'General'
-  // })
-  // waypointColor = Color.MAGENTA
-
-  // @SelectorProperty({
-  //   name: "Chat Type Waypoint Rendering",
-  //   description: "Select where to look for chat waypoints",
-  //   category: "General",
-  //   options: ["All", "Party Only"]
-  // })
-  // waypointFrom = 0;
-
-  // @SwitchProperty({
-  //   name: "Party Commands",
-  //   description: "Enables party commands, universally triggers on [.!?] commands",
-  //   category: "General"
-  // })
-  // party = false
-
-  // @ParagraphProperty({
-  //   name: "Mob Highlight",
-  //   description: "Draws hitboxes around inputted mob entity\n&3@see &cnet.minecraft.entity.(monster|passive|boss)&r\n&bExamples: `Zombie` or `Zombie-100|120|2k|45k` or `Zombie, Skeleton` or `Zombie-100, Cow`",
-  //   category: "Bestiary"
-  // })
-  // rawMobList = "" 
 
   // General
   @SwitchProperty({
     name: "Pearl Cancel",
     description: "Pearl cancel interact",
-    category: "Geral",
+    category: "General",
     subcategory: "Cheats"
   })
   PearlCancel = false
@@ -58,150 +34,174 @@ class Settings {
   @SwitchProperty({
     name: "Pearl Refill",
     description: "Auto refill pearls from your sacks",
-    category: "Geral",
+    category: "General",
     subcategory: "Cheats"
   })
   PearlRefill = false
 
-  // @SwitchProperty({
-  //   name: "Auto Close Wardrobe",
-  //   description: "Fecha sozinho o wardrobe após equipar uma armadura",
-  //   category: "Geral",
-  //   subcategory: "Cheats"
-  // })
-  // AutoCloseWardrobe = false
 
   // Kuudra
 
-  //Kuudra/Custom Splits
-  @ButtonProperty({
-    name: "Custom Splits",
-    description: "Open custom splits menu",
-    category: "Kuudra",
-    placeholder: "Open!"
-  })
-  MovePowderGui() {
-    ChatLib.command("iqsplits", true)
-  };
+    // General
+    @ButtonProperty({
+      name: "Custom Splits",
+      description: "Open custom splits menu",
+      placeholder: "Open!",
+      category: "Kuudra",
+      subcategory: "General",
+    })
+    MovePowderGui() {
+      ChatLib.command("iqsplits", true)
+    };
 
-  @SwitchProperty({
-    name: "Supply Waypoints",
-    category: "Kuudra"
-  })
-  SupplyWaypoints = false
+    @SwitchProperty({
+      name: "Hide Kuudra Mob Nametags",
+      category: "Kuudra",
+      subcategory: "General",
+    })
+    HideMobNametags = false
 
-  @ColorProperty({
-    name: 'Supply Waypoint Color',
-    description: `Sets the color for supplies`,
-    category: 'Kuudra'
-  })
-  SupplyWaypointColor = Color.GREEN
+    @SwitchProperty({
+      name: "Team Highlight",
+      category: "Kuudra",
+      subcategory: "General",
+    })
+    TeamHighlight = false
 
-  @SwitchProperty({
-    name: "Pearl Waypoints",
-    category: "Kuudra"
-  })
-  PearlWaypoints = false
+    @SwitchProperty({
+      name: "BossBar Kuudra HP",
+      category: "Kuudra",
+      subcategory: "General",
+    })
+    KuudraHP = false
 
-  @SwitchProperty({
-    name: "Pille Waypoints",
-    category: "Kuudra"
-  })
-  PilleWaypoints = false
+    @SwitchProperty({
+      name: "Kuudra Server Lag Tracker",
+      category: "Kuudra",
+      subcategory: "General",
+    })
+    LagTracker = false
 
-  @SwitchProperty({
-    name: "Build Overlay",
-    category: "Kuudra"
-  })
-  BuildOverlay = false
+    // P1
+    @SwitchProperty({
+      name: "Supply Times",
+      category: "Kuudra",
+      subcategory: "P1"
+    })
+    SupplyTimes = false  
 
-  @SwitchProperty({
-    name: "Hide Kuudra Mob Nametags",
-    category: "Kuudra"
-  })
-  HideMobNametags = false
+    @ButtonProperty({
+      name: "Move Supply Times",
+      category: "Kuudra",
+      subcategory: "P1",
+      placeholder: "CLICK ME!"
+    })
+    MoveFreshTimer() {
+      ChatLib.command("movesupplytimes", true);
+    };
 
-  @SwitchProperty({
-    name: "Team Highlight",
-    category: "Kuudra"
-  })
-  TeamHighlight = false
+    @SwitchProperty({
+      name: "Supply Waypoints",
+      category: "Kuudra",
+      subcategory: "P1"
+    })
+    SupplyWaypoints = false
 
-  @SwitchProperty({
-    name: "BossBar Kuudra HP",
-    category: "Kuudra"
-  })
-  KuudraHP = false
+    @ColorProperty({
+      name: 'Supply Waypoint Color',
+      description: `Sets the color for supplies`,
+      category: 'Kuudra',
+      subcategory: "P1"
+    })
+    SupplyWaypointColor = Color.GREEN
 
-  @SwitchProperty({
-    name: "Supply Already Picking Alert",
-    description: "Alert when other players is aready picking your supply",
-    category: "Kuudra"
-  })
-  AlreadyPicking = false
+    @SwitchProperty({
+      name: "Pearl Waypoints",
+      category: "Kuudra",
+      subcategory: "P1"
+    })
+    PearlWaypoints = false
 
-  @SwitchProperty({
-    name: "Kuudra Server Lag Tracker",
-    category: "Kuudra"
-  })
-  LagTracker = false
+    @SwitchProperty({
+      name: "Pille Waypoints",
+      category: "Kuudra",
+      subcategory: "P1"
+    })
+    PilleWaypoints = false
 
-  @SwitchProperty({
-    name: "Kuudra Spawn Alert",
-    description: "Alerts you kuudra spawn side",
-    category: "Kuudra",
-    subcategory: "Phase 4"
-  })
-  Direction = false
+    @SwitchProperty({
+      name: "Supply Already Picking Alert",
+      description: "Alert when other players is aready picking your supply",
+      category: "Kuudra",
+      subcategory: "P1"
+    })
+    AlreadyPicking = false
 
-  @SwitchProperty({
-    name: "Rend Damage",
-    description: "Track party rend damage",
-    category: "Kuudra",
-    subcategory: "Phase 4"
-  })
-  RendDamage = false
+    // P2
+    @SwitchProperty({
+      name: "Build Overlay",
+      category: "Kuudra",
+      subcategory: "P2"
+    })
+    BuildOverlay = false
 
-  @SwitchProperty({
-    name: "Key Reminder",
-    description: "Alert when you have one key remaining",
-    category: "Kuudra",
-    subcategory: "Phase 4"
-  })
-  KeyReminder = false
+    // P4
+    @SwitchProperty({
+      name: "Kuudra Spawn Alert",
+      description: "Alerts you kuudra spawn side",
+      category: "Kuudra",
+      subcategory: "P4"
+    })
+    Direction = false
 
-  @SwitchProperty({
-    name: "Chest Open",
-    description: "Opened chest party chat message [Required for auto requeue]",
-    category: "Kuudra",
-    subcategory: "Phase 4"
-  })
-  ChestOpen = false
+    @SwitchProperty({
+      name: "Rend Damage",
+      description: "Track party rend damage",
+      category: "Kuudra",
+      subcategory: "P4"
+    })
+    RendDamage = false
 
-  @SwitchProperty({
-    name: "Auto Requeue",
-    description: "Automatic requeue kuudra run after detect all players chest open messages",
-    category: "Kuudra",
-    subcategory: "Phase 4"
-  })
-  AutoRequeue = false
+    @SwitchProperty({
+      name: "Key Reminder",
+      description: "Alert when you have one key remaining",
+      category: "Kuudra",
+      subcategory: "P4"
+    })
+    KeyReminder = false
+
+    @SwitchProperty({
+      name: "Chest Open",
+      description: "Opened chest party chat message [Required for auto requeue]",
+      category: "Kuudra",
+      subcategory: "P4"
+    })
+    ChestOpen = false
+
+    @SwitchProperty({
+      name: "Auto Requeue",
+      description: "Automatic requeue kuudra run after detect all players chest open messages",
+      category: "Kuudra",
+      subcategory: "P4"
+    })
+    AutoRequeue = false
 
   // cheats
-  @SwitchProperty({
-    name: "Auto BM",
-    description: "Auto buy ballista mechanic perk",
-    category: "Kuudra",
-    subcategory: "Cheats"
-  })
-  AutoBM = false
+    @SwitchProperty({
+      name: "Auto BM",
+      description: "Auto buy ballista mechanic perk",
+      category: "Kuudra",
+      subcategory: "Cheats"
+    })
+    AutoBM = false
 
-  @SwitchProperty({
-    name: "Auto Cannon Close",
-    description: "Auto close shop menu after buy human cannonball perk",
-    category: "Kuudra",
-    subcategory: "Cheats"
-  })
-  CannonClose = false
+    @SwitchProperty({
+      name: "Auto Cannon Close",
+      description: "Auto close shop menu after buy human cannonball perk",
+      category: "Kuudra",
+      subcategory: "Cheats"
+    })
+    CannonClose = false
 
   constructor() {
     this.initialize(this);
@@ -211,6 +211,8 @@ class Settings {
 
     this.addDependency("Auto Requeue", "Chest Open");
     this.addDependency("Supply Waypoint Color", "Supply Waypoints");
+
+    this.addDependency("Move Supply Times", "Supply Times")
   }
 }
 export default new Settings();

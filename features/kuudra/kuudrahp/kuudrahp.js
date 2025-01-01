@@ -6,11 +6,7 @@ import { registerWhen } from "../../../utils/reg";
  * Variables used to track and display Kuudra HP and entity.
  */
 let cubes = undefined;
-let percentHP = new Text(
-  `§lWaiting`,
-  Renderer.screen.getWidth() / 2 - Renderer.getStringWidth(`§lWaiting`) / 2,
-  10
-);
+let percentHP
 let currentHP = 0;
 
 export function getKuudraHP() {
@@ -35,15 +31,17 @@ registerWhen(
       const percent = `${((currentHP / 100_000) * 100).toFixed(2)}%`;
       percentHP = new Text("§l" + percent, Renderer.screen.getWidth() / 2 - Renderer.getStringWidth(percent) / 1.8, 11);
     }
-  }), () => Skyblock.subArea === "Kuudra's Hollow" && Settings.KuudraHP);
+  }), () => Settings.KuudraHP && Skyblock.subArea === "Kuudra's Hollow");
 
 /**
  * Renders Kuudra's percent HP.
  */
 registerWhen(
   register("renderOverlay", () => {
-    percentHP.draw();
-  }), () => Skyblock.subArea === "Kuudra's Hollow" && Settings.KuudraHP);
+    if(percentHP instanceof Text){
+      percentHP.draw();
+    }
+  }), () => Settings.KuudraHP && Skyblock.subArea === "Kuudra's Hollow");
 
 /**
  * Reset Kuudra's UUID on world exit.
@@ -54,4 +52,4 @@ registerWhen(register("worldUnload", () => {
     Renderer.screen.getWidth() / 2 - Renderer.getStringWidth(`§lWaiting`) / 2,
     10
   );
-}), () => Skyblock.subArea === "Kuudra's Hollow" && Settings.KuudraHP)
+}), () => Settings.KuudraHP && Skyblock.subArea === "Kuudra's Hollow")

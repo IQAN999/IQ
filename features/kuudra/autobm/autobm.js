@@ -47,7 +47,7 @@ registerWhen(register("guiOpened", () => {
             Player.getContainer().click(13)
             setTimeout(() => {
                 Client.currentGui.close()
-            }, 25);
-        }, 25);
-    }, 50);
+            }, 30);
+        }, 30);
+    }, 100);
 }), () => Settings.AutoBM && Skyblock.subArea === "Kuudra's Hollow")
