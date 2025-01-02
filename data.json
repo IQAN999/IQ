@@ -1,7 +1,12 @@
 {
-    "supplyTimes": {
-        "x": 5,
-        "y": 88,
-        "scale": 0.9199999999999999
+    "supplytimes": {
+        "x": 320,
+        "y": 179.5,
+        "scale": 1
+    },
+    "lifelinedisplay": {
+        "x": 289,
+        "y": 253,
+        "scale": 0.8999999999999999
     }
 }

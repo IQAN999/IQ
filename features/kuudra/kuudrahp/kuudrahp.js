@@ -6,7 +6,7 @@ import { registerWhen } from "../../../utils/reg";
  * Variables used to track and display Kuudra HP and entity.
  */
 let cubes = undefined;
-let percentHP
+let percentHP = null
 let currentHP = 0;
 
 export function getKuudraHP() {
@@ -46,10 +46,6 @@ registerWhen(
 /**
  * Reset Kuudra's UUID on world exit.
  */
-registerWhen(register("worldUnload", () => {
-  percentHP = new Text(
-    `§lWaiting`,
-    Renderer.screen.getWidth() / 2 - Renderer.getStringWidth(`§lWaiting`) / 2,
-    10
-  );
+registerWhen(register("WorldLoad", () => {
+  percentHP = null
 }), () => Settings.KuudraHP && Skyblock.subArea === "Kuudra's Hollow")

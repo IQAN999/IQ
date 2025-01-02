@@ -10,6 +10,7 @@ const modules = [
   { path: "./features/general/pearlrefill/pearlrefill" },
 
   // Kuudra
+  { path: "./features/kuudra/lifelinedisplay/lifelinedisplay" },
   { path: "./features/kuudra/supplytimes/supplytimes" },
   { path: "./features/kuudra/supplywaypoints/supplywaypoints" },
   { path: "./features/kuudra/pillewaypoints/pillewaypoints" },

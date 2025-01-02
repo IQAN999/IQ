@@ -15,7 +15,10 @@ import { version } from "./utils/constants"
   },
   getPropertyComparator: () => (a, b) => {
     // And this will put the properties in the order we want them to appear.
-    const names = ["Supply Times", "Move Supply Times"];
+    const names = [
+      "Supply Times", "Move Supply Times",
+      "Lifeline Display", "Move Lifeline Display"
+    ];
 
     return names.indexOf(a.attributesExt.name) - names.indexOf(b.attributesExt.name);
   }
@@ -39,7 +42,6 @@ class Settings {
   })
   PearlRefill = false
 
-
   // Kuudra
 
     // General
@@ -50,7 +52,7 @@ class Settings {
       category: "Kuudra",
       subcategory: "General",
     })
-    MovePowderGui() {
+    splitsGui() {
       ChatLib.command("iqsplits", true)
     };
 
@@ -82,6 +84,24 @@ class Settings {
     })
     LagTracker = false
 
+    @SwitchProperty({
+      name: "Lifeline Display",
+      description: "Displays lifeline status",
+      category: "Kuudra",
+      subcategory: "General"
+    })
+    LifelineDisplay = false
+  
+    @ButtonProperty({
+      name: "Move Lifeline Display",
+      category: "Kuudra",
+      subcategory: "General",
+      placeholder: "MOVE"
+    })
+    lifelineDisplayGui() {
+      ChatLib.command("movelifelinedisplay", true);
+    };
+
     // P1
     @SwitchProperty({
       name: "Supply Times",
@@ -94,9 +114,9 @@ class Settings {
       name: "Move Supply Times",
       category: "Kuudra",
       subcategory: "P1",
-      placeholder: "CLICK ME!"
+      placeholder: "MOVE"
     })
-    MoveFreshTimer() {
+    moveSupplyTimesGui() {
       ChatLib.command("movesupplytimes", true);
     };
 
@@ -213,6 +233,7 @@ class Settings {
     this.addDependency("Supply Waypoint Color", "Supply Waypoints");
 
     this.addDependency("Move Supply Times", "Supply Times")
+    this.addDependency("Move Lifeline Display", "Lifeline Display")
   }
 }
 export default new Settings();

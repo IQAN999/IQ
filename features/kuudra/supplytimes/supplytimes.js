@@ -54,7 +54,6 @@ registerWhen(register("chat", (player, supply, event) => {
 }).setCriteria("${player}&a&lrecovered one of Elle's supplies! ${supply}"), () => Settings.SupplyTimes && Skyblock.subArea === "Kuudra's Hollow" && Kuudra.getPhase() != 0)
 
 registerWhen(register("renderOverlay", () => {
-
         drawString = ""
 
         places.forEach((place) => {
@@ -62,8 +61,8 @@ registerWhen(register("renderOverlay", () => {
         })
 
         supplyInfo.setString(drawString)
-        supplyInfo.setScale(data.supplyTimes.scale)
-        supplyInfo.draw(data.supplyTimes.x, data.supplyTimes.y)
+        supplyInfo.setScale(data.supplytimes.scale)
+        supplyInfo.draw(data.supplytimes.x, data.supplytimes.y)
 
 }), () => Settings.SupplyTimes && Skyblock.subArea === "Kuudra's Hollow" && Kuudra.getPhase() != 0)
 
@@ -71,8 +70,7 @@ registerWhen(register("WorldLoad", () => {
     places = []
 }), () => Skyblock.subArea === "Kuudra's Hollow")
 
-renderingGuiOverlay = false
-const editGui = new ScalableGui(data, data.supplyTimes).setCommand("movesupplytimes")
+const editGui = new ScalableGui(data, data.supplytimes).setCommand("movesupplytimes")
 guiString = new Text(`&aPlayerName &8(0/6) &l&90.00s`, 200, 100).setShadow(true).setAlign("left")
 
 editGui.onRender(() => {
