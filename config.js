@@ -26,21 +26,31 @@ import { version } from "./utils/constants"
 class Settings {
 
   // General
-  @SwitchProperty({
-    name: "Pearl Cancel",
-    description: "Pearl cancel interact",
-    category: "General",
-    subcategory: "Cheats"
-  })
-  PearlCancel = false
+    // General
+    @SwitchProperty({
+      name: "Mana Drain Notify",
+      description: "Say how much mana you drained in party chat",
+      category: "General",
+      subcategory: "General"
+    })
+    ManaDrainNotify = false
+    
+    //Cheats
+    @SwitchProperty({
+      name: "Pearl Cancel",
+      description: "Pearl cancel interact",
+      category: "General",
+      subcategory: "Cheats"
+    })
+    PearlCancel = false
 
-  @SwitchProperty({
-    name: "Pearl Refill",
-    description: "Auto refill pearls from your sacks",
-    category: "General",
-    subcategory: "Cheats"
-  })
-  PearlRefill = false
+    @SwitchProperty({
+      name: "Pearl Refill",
+      description: "Auto refill pearls from your sacks",
+      category: "General",
+      subcategory: "Cheats"
+    })
+    PearlRefill = false
 
   // Kuudra
 

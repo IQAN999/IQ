@@ -3,6 +3,7 @@
 
 	[general.general]
 		lifeline_display = true
+		mana_drain_notify = true
 
 	[general.cheats]
 		pearl_refill = true

@@ -39,5 +39,6 @@ export const LOGO = `${GRAY}[${GOLD}IQ${GRAY}] `;
 /**
  * Minecraft Class Constants
  */
-export const GIANT_CLASS = Java.type("net.minecraft.entity.monster.EntityGiantZombie").class;
-export const ENTITY_ARMOR_STAND = Java.type("net.minecraft.entity.item.EntityArmorStand").class;
+export const GIANT_CLASS = Java.type("net.minecraft.entity.monster.EntityGiantZombie").class
+export const ENTITY_ARMOR_STAND = Java.type("net.minecraft.entity.item.EntityArmorStand").class
+export const ENTITY_PLAYER = Java.type("net.minecraft.client.entity.EntityOtherPlayerMP").class

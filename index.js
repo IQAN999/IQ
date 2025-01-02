@@ -5,6 +5,8 @@ import splits from "./features/kuudra/splits/splitsgui";
 
 const modules = [
   // General
+    // General
+  { path: "./features/general/manadrainnotify/manadrainnotify" },
     // Cheat
   { path: "./features/general/pearlcancel/pearlcancel" },
   { path: "./features/general/pearlrefill/pearlrefill" },
