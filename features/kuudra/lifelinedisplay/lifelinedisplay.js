@@ -24,7 +24,7 @@ registerWhen(register("renderOverlay", () => {
 
 
 const editGui = new ScalableGui(data, data.lifelinedisplay).setCommand("movelifelinedisplay")
-guiString = new Text(`&6&lLifeline &a&lACTIVE`, 200, 100).setShadow(true).setAlign("left")
+guiString = new Text(`&6&lLifeline &a&lON`, 200, 100).setShadow(true).setAlign("left")
 
 editGui.onRender(() => {
     if(Skyblock.subArea != "Kuudra's Hollow"){
