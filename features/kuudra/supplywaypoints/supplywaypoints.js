@@ -38,15 +38,15 @@ registerWhen(register("renderWorld", () => {
             100
         );
 
-        x = supply[0] + 0.5
-        y = supply[1] - 1
-        z = supply[2] + 0.5
-        wx = 1
-        h = 1
-        wz = 1
-        d = true
-        lw = 3
+        // x = supply[0] + 0.5
+        // y = supply[1] - 1
+        // z = supply[2] + 0.5
+        // wx = 1
+        // h = 1
+        // wz = 1
+        // d = true
+        // lw = 3
 
-        RenderLibV2.drawEspBoxV2(x, y, z, wx, h, wz, ...getRGB1(Settings.SupplyWaypointColor), 1, d, lw);
+        // RenderLibV2.drawEspBoxV2(x, y, z, wx, h, wz, ...getRGB1(Settings.SupplyWaypointColor), 1, d, lw);
     }
 }), () => Skyblock.subArea === "Kuudra's Hollow" && Settings.SupplyWaypoints && Kuudra.getPhase() == 1);

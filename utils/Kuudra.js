@@ -36,7 +36,7 @@ class Kuudra {
                     // phase 3 (eaten)
                     case msg.includes("[NPC] Elle: Phew! The Ballista is finally ready! It should be strong enough to tank Kuudra's blows now!"):
                         // ChatLib.chat("Kuudra phase detected: Eaten")
-                        this.phase = 2
+                        this.phase = 3
                         this.times.eaten = Date.now()
                         break
                     // phase 4 (stun)
@@ -61,10 +61,9 @@ class Kuudra {
                         this.times.skip = Date.now()
                         break
                     // phase 8 (run ends)
-                    case msg.includes("KUUDRA DOWN!") || msg.includes("DEFEAT"):
+                    case (msg.includes("KUUDRA DOWN!") || msg.includes("DEFEAT")):
                         // ChatLib.chat("Kuudra phase detected: 8 Run ends")
                         this.phase = 8;
-                        this.times.kill = Date.now()
                         break
                 }
             }).setCriteria("${msg}"), () => Skyblock.subArea == "Kuudra's Hollow")
@@ -73,6 +72,7 @@ class Kuudra {
             registerWhen(register("tick", () => {
                 if(Math.round(Player.getY()) < 10 && this.phase == 6){
                     this.phase = 7
+                    this.times.kill = Date.now()
                     // ChatLib.chat("Kuudra phase detected: 7 dps")
                 } 
             }), () => Skyblock.subArea == "Kuudra's Hollow")

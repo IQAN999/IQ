@@ -233,6 +233,14 @@ class Settings {
     })
     CannonClose = false
 
+    @SwitchProperty({
+      name: "Stun VCLIP",
+      description: "Turn on VCLIP when in build/eaten/stun phases",
+      category: "Kuudra",
+      subcategory: "Cheats"
+    })
+    Vclip = false
+
   constructor() {
     this.initialize(this);
 

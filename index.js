@@ -30,6 +30,7 @@ const modules = [
     // Cheat
   { path: "./features/kuudra/autobm/autobm" },
   { path: "./features/kuudra/cannonclose/cannonclose" },
+  { path: "./features/kuudra/vclip/vclip" },
 ];
 
 const loadModules = () => {

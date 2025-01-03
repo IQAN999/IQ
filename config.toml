@@ -20,7 +20,7 @@
 
 	[kuudra.p1]
 		supply_times = true
-		supply_waypoint_color = "255,0,255,234"
+		supply_waypoint_color = "255,32,255,0"
 		supply_already_picking_alert = true
 		pearl_waypoints = true
 		pille_waypoints = true
@@ -30,7 +30,7 @@
 		build_overlay = true
 
 	[kuudra.p4]
-		chest_open = true
+		chest_open = false
 		rend_damage = false
 		auto_requeue = true
 		kuudra_spawn_alert = true
@@ -38,5 +38,6 @@
 
 	[kuudra.cheats]
 		auto_bm = false
+		stun_vclip = true
 		auto_cannon_close = true
 
